@@ -127,6 +127,8 @@
     <!-- Custom scripts -->
     <script type="text/javascript">
 
+function initAgain() {
+
         makeRequest("GET", latestPosts).then(response => {
 
             if (response.status == 200) {
@@ -164,8 +166,9 @@
 
 
         });
+    }
 
-
+    initAgain();
 
 
 
@@ -242,7 +245,7 @@
                     console.log(obj);
 
                     document.getElementById("Loader").style = "display:none!important";
-                    var res = "";
+                    var res = "<button class='btn btn-primary' onClick='initAgain()'>Go Back</button>";
 
 
 
