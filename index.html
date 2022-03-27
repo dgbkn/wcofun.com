@@ -281,6 +281,16 @@
 
 
 
+function setdecodedData(data){
+				localStorage.setItem("mrdecode",data);
+
+}
+
+function getDecoded(){
+		return	localStorage.getItem("mrdecode");
+}
+
+
         function loadSingleEpisode(singleEpisodeurl, animeId) {
 
 
@@ -300,7 +310,7 @@
     var res = `<button class='btn btn-primary' onClick="loadEpisodes(${animeId})">Go Back</button>`;
 
     const parser = new DOMParser();
-    doc = parser.parseFromString(obj, "text/html");
+   var doc = parser.parseFromString(obj, "text/html");
 
 
 var scripts = doc.getElementsByTagName("script");
@@ -309,7 +319,7 @@ console.log(scripts);
 
 
 var finalScript = scripts[5].innerHTML;
-finalScript = finalScript.replaceAll('location.replace',"console.log")
+
 
 //for (var i = 0; i < scripts.length; i++) {
  // if (scripts[i].innerHTML && scripts[i].innerHTML.includes("var HYO =")) {
@@ -319,12 +329,30 @@ finalScript = finalScript.replaceAll('location.replace',"console.log")
    //   break;
  // } 
 //}
-    // res = res + obj;
 
+
+finalScript = finalScript.replace('document.write','setdecodedData');
+
+eval(finalScript);
+
+var decoded = getDecoded();
+ 
+ 
+ doc = parser.parseFromString(decoded, "text/html");
+ 
+var srcf = doc.getElementsByTagName("iframe")[0].src;
+
+srcf = "https://wcofun.com"+ srcf;
+
+  
+  
+  var res2 = `
+      <iframe src="${srcf}" frameborder="0" height="600px" width="100%"></iframe>
+  `;
+
+
+res = res + res2;
     document.getElementById('mainContent').innerHTML = res;
-
-    eval(finalScript);
-
     }
 
 
