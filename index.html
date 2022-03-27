@@ -342,7 +342,9 @@ var decoded = getDecoded();
  
 var srcf = doc.getElementsByTagName("iframe")[0].src;
 
-srcf = "https://wcofun.com"+ srcf;
+srcf = srcf.replace("https://wcofun.pages.dev/","");
+
+srcf = "https://wcofun.com/"+ srcf;
 
   
   
