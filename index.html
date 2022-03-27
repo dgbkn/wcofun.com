@@ -287,7 +287,8 @@
             document.getElementById('mainContent').innerHTML = ``;
             document.getElementById("Loader").style = "";
 
-            makeRequest("GET", "https://thawning.tanishagoyal.repl.co/api?uri=" + singleEpisodeurl).then(response => {
+            singleEpisodeurl = singleEpisodeurl.replace("https://","");
+            makeRequest("GET", "https://proxy.goincop1.workers.dev/https/" + singleEpisodeurl).then(response => {
                 if (response.status == 200) {
                     console.log(response.responseText);
 
