@@ -299,9 +299,24 @@
     document.getElementById("Loader").style = "display:none!important";
     var res = `<button class='btn btn-primary' onClick="loadEpisodes(${animeId})">Go Back</button>`;
 
-    res = res + obj;
+    const parser = new DOMParser();
+    doc = parser.parseFromString(obj, "text/html");
+
+
+var scripts = doc.getElementsByTagName("script");
+var finalScript = "";
+
+for (var i = 0; i < scripts.length; i++) {
+  if (scripts[i].innerHTML && scripts[i].innerHTML.includes("var HYO =")) {
+  	console.log(i, scripts[i].innerHTML);
+      finalScript = scripts[i].innerHTML;
+  } 
+}
+    // res = res + obj;
 
     document.getElementById('mainContent').innerHTML = res;
+
+    eval(finalScript);
 
     }
 
