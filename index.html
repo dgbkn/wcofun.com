@@ -304,12 +304,17 @@
 
 
 var scripts = doc.getElementsByTagName("script");
+
+console.log(scripts);
+
+
 var finalScript = "";
 
 for (var i = 0; i < scripts.length; i++) {
   if (scripts[i].innerHTML && scripts[i].innerHTML.includes("var HYO =")) {
   	console.log(i, scripts[i].innerHTML);
       finalScript = scripts[i].innerHTML;
+      console.log(finalScript);
       break;
   } 
 }
