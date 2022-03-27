@@ -127,22 +127,22 @@
     <!-- Custom scripts -->
     <script type="text/javascript">
 
-function initAgain() {
+        function initAgain() {
 
-        makeRequest("GET", latestPosts).then(response => {
+            makeRequest("GET", latestPosts).then(response => {
 
-            if (response.status == 200) {
-                console.log(response.responseText);
+                if (response.status == 200) {
+                    console.log(response.responseText);
 
-                var obj = JSON.parse(response.responseText);
+                    var obj = JSON.parse(response.responseText);
 
-                console.log(obj);
+                    console.log(obj);
 
-                document.getElementById("Loader").style = "display:none!important";
-                var res = "";
+                    document.getElementById("Loader").style = "display:none!important";
+                    var res = "";
 
-                obj.forEach((i) => {
-                    res = res + `
+                    obj.forEach((i) => {
+                        res = res + `
                  
 
                     <div class="col-lg-12 col-md-12 col-sm-12 ">
@@ -157,18 +157,18 @@ function initAgain() {
 </div>
   `;
 
-                });
+                    });
 
 
-                document.getElementById('mainContent').innerHTML = res;
+                    document.getElementById('mainContent').innerHTML = res;
 
-            }
+                }
 
 
-        });
-    }
+            });
+        }
 
-    initAgain();
+        initAgain();
 
 
 
@@ -281,7 +281,7 @@ function initAgain() {
 
 
 
-        function loadSingleEpisode(singleEpisodeurl,animeId) {
+        function loadSingleEpisode(singleEpisodeurl, animeId) {
 
 
             document.getElementById('mainContent').innerHTML = ``;
@@ -292,24 +292,25 @@ function initAgain() {
                     console.log(response.responseText);
 
                     var obj = response.responseText;
-                    obj = obj.replace(`<script type="text/javascript">if(window.location.hostname != "www.wcofun.com"){ window.location="https://www.wcofun.com"; }</script>`,"");
+                    var rep1 = '!=';
+                    obj = obj.replaceAll(rep1,"==");
 
-                    document.getElementById("Loader").style = "display:none!important";
-                    var res = `<button class='btn btn-primary' onClick="loadEpisodes(${animeId})">Go Back</button>`;
+    document.getElementById("Loader").style = "display:none!important";
+    var res = `<button class='btn btn-primary' onClick="loadEpisodes(${animeId})">Go Back</button>`;
 
-                        res = res + obj;
+    res = res + obj;
 
-                    document.getElementById('mainContent').innerHTML = res;
+    document.getElementById('mainContent').innerHTML = res;
 
-                }
-
-
-            });
+    }
 
 
+    });
 
 
-        }
+
+
+    }
 
     </script>
 </body>
